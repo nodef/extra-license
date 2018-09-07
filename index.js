@@ -68,10 +68,11 @@ function license(txt, opt={}) {
   });
 };
 license.load = load;
+license.corpus = corpus;
 module.exports = license;
 
 
-// Main function for shell.
+// Main function for console.
 function main() {
   var E = process.env, A = process.argv, o = {
     year: E['ELICENSE_YEAR']||(new Date()).getFullYear(),
