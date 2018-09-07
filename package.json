@@ -1,7 +1,7 @@
 {
   "name": "extra-license",
-  "version": "0.0.6",
-  "description": "Get SPDY license text.",
+  "version": "0.0.7",
+  "description": "Get SPDX license text.",
   "main": "index.js",
   "scripts": {
     "test": "exit"
@@ -13,7 +13,7 @@
   "keywords": [
     "extra",
     "license",
-    "spdy",
+    "spdx",
     "text",
     "merferry"
   ],
