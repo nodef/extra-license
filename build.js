@@ -5,7 +5,8 @@ const os = require('os');
 
 
 // globals
-const FMT_YAML = /---([\s\S]*)---([\s\S]*)/;
+const FMT_YAML = /---([\s\S]*?)---([\s\S]*)/;
+const FMT_HTMLTAG = /<(.*?)>(.*?)<\/.*?>/g;
 
 
 // Get YAML data as JSON.
@@ -19,13 +20,18 @@ function yamlContent(txt) {
   return txt.replace(FMT_YAML, '$2').trim();
 };
 
+// Remove HTML tags from text.
+function htmltagRemove(txt) {
+  return txt.replace(FMT_HTMLTAG, '$2');
+};
+
 // Filter corpus data.
 function dataFilter(d) {
   return {
+    id: d['spdx-id'],
     title: d.title,
-    'spdx-id': d['spdx-id'],
     nickname: d.nickname||'',
-    description: d.description,
+    description: htmltagRemove(d.description),
     permissions: d.permissions.join(' '),
     conditions: d.conditions.join(' '),
     limitations: d.limitations.join(' ')
