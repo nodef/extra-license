@@ -1,5 +1,6 @@
 const lunr = require('lunr');
 const path = require('path');
+const cp = require('child_process');
 const fs = require('fs');
 
 
@@ -68,3 +69,28 @@ function license(txt, opt={}) {
 };
 license.load = load;
 module.exports = license;
+
+
+// Main function for shell.
+function main() {
+  var E = process.env, A = process.argv, o = {
+    year: E['ELICENSE_YEAR']||(new Date()).getFullYear(),
+    fullname: E['ELICENSE_FULLNAME']||null,
+    email: E['ELICENSE_EMAIL']||null,
+    project: E['ELICENSE_PROJECT']||null,
+  };
+  var txt = E['ELICENSE']||'mit'; load();
+  for(var i=2, I=A.length; i<I; i++) {
+    if(A[i]==='--help') return cp.execSync(`less "${__dirname}/README.md"`, {stdio: [0, 1, 2]});
+    else if(A[i]==='-y' || A[i]==='--year') o.year = A[++i];
+    else if(A[i]==='-f' || A[i]==='--fullname') o.fullname = A[++i];
+    else if(A[i]==='-e' || A[i]==='--email') o.email = A[++i];
+    else if(A[i]==='-p' || A[i]==='--project') o.project = A[++i];
+    else txt = A[i].toLowerCase();
+  }
+  license(txt, o).then((ans) => {
+    if(ans==null) console.error(`Unknown license: "${txt}"`);
+    else console.log(ans);
+  });
+};
+if(require.main===module) main();
