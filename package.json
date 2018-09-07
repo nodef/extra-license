@@ -1,6 +1,6 @@
 {
   "name": "extra-license",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Get SPDY license text.",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,9 @@
     "url": "https://github.com/nodef/extra-license/issues"
   },
   "homepage": "https://github.com/nodef/extra-license#readme",
-  "dependencies": {},
+  "dependencies": {
+    "lunr": "^2.3.3"
+  },
   "devDependencies": {
     "js-yaml": "^3.12.0"
   }

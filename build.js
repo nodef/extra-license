@@ -15,11 +15,6 @@ function yamlData(txt) {
   return yaml.load(txt);
 };
 
-// Get YAML content.
-function yamlContent(txt) {
-  return txt.replace(FMT_YAML, '$2').trim();
-};
-
 // Remove HTML tags from text.
 function htmltagRemove(txt) {
   return txt.replace(FMT_HTMLTAG, '$2');
@@ -28,7 +23,7 @@ function htmltagRemove(txt) {
 // Filter corpus data.
 function dataFilter(d) {
   return {
-    id: d['spdx-id'],
+    id: d['spdx-id'].toLowerCase(),
     title: d.title,
     nickname: d.nickname||'',
     description: htmltagRemove(d.description),
@@ -36,11 +31,6 @@ function dataFilter(d) {
     conditions: d.conditions.join(' '),
     limitations: d.limitations.join(' ')
   };
-};
-
-// Replace content with given properties.
-function contentReplace(txt, p) {
-  return txt.replace(/\[(\w+)\]/g, (m, p1) => p[p1]||'');
 };
 
 // Stringify JSON without quoted keys.
