@@ -80,4 +80,5 @@ await elicense('isc', {year: 2017, fullname: 'Megasthenes'});
 
 
 [![Merferry](https://i.imgur.com/EYm1X2y.jpg)](https://merferry.github.io)
+
 [license types]: https://github.com/nodef/extra-license/tree/master/assets
