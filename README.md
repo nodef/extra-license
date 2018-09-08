@@ -23,6 +23,7 @@ $ elicense [command] [text] [options]
 # -n | --fullname: author name
 # -e | --email: author email
 # -p | --project: project details
+# -u | --projecturl: project url
 # -f | --filter: filter properties
 # Environment variables:
 # ELICENSE: license type
@@ -30,6 +31,7 @@ $ elicense [command] [text] [options]
 # ELICENSE_FULLNAME: author name
 # ELICENSE_EMAIL: author email
 # ELICENSE_PROJECT: project details
+# ELICENSE_PROJECTURL: project url
 # ELICENSE_FILTER: filter properties
 
 

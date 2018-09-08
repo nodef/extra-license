@@ -103,8 +103,9 @@ function main() {
     fullname: E['ELICENSE_FULLNAME']||null,
     email: E['ELICENSE_EMAIL']||null,
     project: E['ELICENSE_PROJECT']||null,
-    filter: E['ELICENSE_FILTER']||null,
+    projecturl: E['ELICENSE_PROJECTURL']||null,
   };
+  var filter = E['ELICENSE_FILTER']||null;
   var cmd = null, txt = E['ELICENSE']||''; load();
   for(var i=2, I=A.length; i<I; i++) {
     if(A[i]==='--help') return cp.execSync(`less "${__dirname}/README.md"`, {stdio: [0, 1, 2]});
@@ -112,13 +113,14 @@ function main() {
     else if(A[i]==='-n' || A[i]==='--fullname') o.fullname = A[++i];
     else if(A[i]==='-e' || A[i]==='--email') o.email = A[++i];
     else if(A[i]==='-p' || A[i]==='--project') o.project = A[++i];
-    else if(A[i]==='-f' || A[i]==='--filter') o.filter = A[++i];
+    else if(A[i]==='-u' || A[i]==='--projecturl') o.projecturl = A[++i];
+    else if(A[i]==='-f' || A[i]==='--filter') filter = A[++i];
     else if(cmd==null && /^(search|get)$/.test(A[i])) cmd = A[i].toLowerCase();
     else txt = A[i].toLowerCase();
   }
   if(cmd==='search') {
     for(var r of search(txt))
-      console.log(yamlStringify(r, o.filter));
+      console.log(yamlStringify(r, filter));
     return;
   }
   license(txt||'mit', o).then((ans) => {
