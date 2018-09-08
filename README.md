@@ -102,15 +102,16 @@ elicense.search('network-use-disclose');
 //      'include-copyright document-changes disclose-source network-use-disclose same-license',
 //     limitations: 'liability warranty' }, ... ]
 
-await elicense.get('agpl-3.0', {year: 2017, fullname: 'Megasthenes'});
-// GNU AFFERO GENERAL PUBLIC LICENSE
-//                        Version 3, 19 November 2007
+await elicense.get('isc', {year: 2017, fullname: 'Megasthenes'});
+// ISC License
 //
-//  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
-//  Everyone is permitted to copy and distribute verbatim copies
-//  of this license document, but changing it is not allowed.
+// Copyright (c) 2017, Megasthenes
 //
-//                             Preamble
+// Permission to use, copy, modify, and/or distribute this software for any
+// purpose with or without fee is hereby granted, provided that the above
+// copyright notice and this permission notice appear in all copies.
+//
+// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
 // ...
 ```
 
