@@ -89,6 +89,29 @@ await elicense('isc', {year: 2017, fullname: 'Megasthenes'});
 //
 // Permission to use, copy, modify, and/or distribute this software for any
 // ...
+
+elicense.search('network-use-disclose');
+// [ { id: 'agpl-3.0',
+//     title: 'GNU Affero General Public License v3.0',
+//     nickname: 'GNU AGPLv3',
+//     description:
+//      'Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.',
+//     permissions:
+//      'commercial-use modifications distribution patent-use private-use',
+//     conditions:
+//      'include-copyright document-changes disclose-source network-use-disclose same-license',
+//     limitations: 'liability warranty' }, ... ]
+
+await elicense.get('agpl-3.0', {year: 2017, fullname: 'Megasthenes'});
+// GNU AFFERO GENERAL PUBLIC LICENSE
+//                        Version 3, 19 November 2007
+//
+//  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+//  Everyone is permitted to copy and distribute verbatim copies
+//  of this license document, but changing it is not allowed.
+//
+//                             Preamble
+// ...
 ```
 
 
