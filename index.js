@@ -16,6 +16,14 @@ function yamlContent(txt) {
   return txt.replace(FMT_YAML, '$2').trim();
 };
 
+// Stringify JSON as YAML.
+function yamlStringify(obj, flt=null) {
+  var z = '';
+  for(var k in obj)
+    if(k==='id' || flt==null || flt.includes(k)) z += `${k}: ${obj[k]}\n`;
+  return z;
+};
+
 // Replace content with given properties.
 function contentReplace(txt, p={}) {
   return txt.replace(/\[(\w+)\]/g, (m, p1) => p[p1]||m);
@@ -95,17 +103,25 @@ function main() {
     fullname: E['ELICENSE_FULLNAME']||null,
     email: E['ELICENSE_EMAIL']||null,
     project: E['ELICENSE_PROJECT']||null,
+    filter: E['ELICENSE_FILTER']||null,
   };
-  var txt = E['ELICENSE']||'mit'; load();
+  var cmd = null, txt = E['ELICENSE']||''; load();
   for(var i=2, I=A.length; i<I; i++) {
     if(A[i]==='--help') return cp.execSync(`less "${__dirname}/README.md"`, {stdio: [0, 1, 2]});
     else if(A[i]==='-y' || A[i]==='--year') o.year = A[++i];
-    else if(A[i]==='-f' || A[i]==='--fullname') o.fullname = A[++i];
+    else if(A[i]==='-n' || A[i]==='--fullname') o.fullname = A[++i];
     else if(A[i]==='-e' || A[i]==='--email') o.email = A[++i];
     else if(A[i]==='-p' || A[i]==='--project') o.project = A[++i];
+    else if(A[i]==='-f' || A[i]==='--filter') o.filter = A[++i];
+    else if(cmd==null && /^(search|get)$/.test(A[i])) cmd = A[i].toLowerCase();
     else txt = A[i].toLowerCase();
   }
-  license(txt, o).then((ans) => {
+  if(cmd==='search') {
+    for(var r of search(txt))
+      console.log(yamlStringify(r, o.filter));
+    return;
+  }
+  license(txt||'mit', o).then((ans) => {
     if(ans==null) console.error(`Unknown license: "${txt}"`);
     else console.log(ans);
   });
