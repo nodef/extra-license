@@ -52,23 +52,39 @@ function load() {
 };
 
 
-// Get license text.
-function license(txt, opt={}) {
-  if(index==null) return Promise.resolve(null);
-  var txt = txt.replace(/\W/g, ' ');
-  var mats = index.search(txt);
-  if(mats.length===0) return Promise.resolve(null);
-  var z = corpus.get(mats[0].ref);
+// Search license properties by text.
+function search(txt) {
+  if(index==null) return [];
+  var z = [], txt = txt.replace(/\W/g, ' ');
+  var mats = index.search(txt), max = 0;
+  for(var mat of mats)
+    max = Math.max(max, Object.keys(mat.matchData.metadata).length);
+  for(var mat of mats)
+    if(Object.keys(mat.matchData.metadata).length===max) z.push(corpus.get(mat.ref));
+  return z;
+};
+
+// Get license text by id.
+function get(id, opt={}) {
   return new Promise((fres, frej) => {
-    var p = path.join(__dirname, 'assets', z.id+'.txt');
+    var p = path.join(__dirname, 'assets', id+'.txt');
     fs.readFile(p, 'utf8', (err, data) => {
       if(err) return frej(err);
       fres(contentReplace(yamlContent(data), opt));
     });
   });
 };
+
+// Get license text.
+function license(txt, opt={}) {
+  var dats = search(txt);
+  if(dats.length===0) return Promise.resolve(null);
+  return get(dats[0].id, opt);
+};
 license.load = load;
 license.corpus = corpus;
+license.search = search;
+license.get = get;
 module.exports = license;
 
 
