@@ -1,5 +1,9 @@
 Get [SPDX license] text.
 > See available [license types].
+<br>
+
+
+## setup
 
 ```bash
 # install as console app
@@ -8,33 +12,12 @@ $ npm install -g extra-license
 # install as node.js package
 $ npm install extra-license
 ```
+<br>
 
 
-### console
+## console
 
 ```bash
-$ elicense [command] [text] [options]
-# Commands:
-# - get: get license text (default)
-# - search: search license properties
-# Text: search text (mit/isc/...)
-# Options:
-# -y | --year: license year
-# -n | --fullname: author name
-# -e | --email: author email
-# -p | --project: project details
-# -u | --projecturl: project url
-# -f | --filter: filter properties
-# Environment variables:
-# ELICENSE: license type
-# ELICENSE_YEAR: license year
-# ELICENSE_FULLNAME: author name
-# ELICENSE_EMAIL: author email
-# ELICENSE_PROJECT: project details
-# ELICENSE_PROJECTURL: project url
-# ELICENSE_FILTER: filter properties
-
-
 # get mit license
 $ elicense
 
@@ -60,18 +43,37 @@ $ elicense search "disclose-source"
 $ elicense search "document-changes" -f "conditions,limitations"
 ```
 
+### reference
 
-### package
+```bash
+$ elicense [command] [text] [options]
+# Commands:
+# - get: get license text (default)
+# - search: search license properties
+# Text: search text (mit/isc/...)
+# Options:
+# -y | --year: license year
+# -n | --fullname: author name
+# -e | --email: author email
+# -p | --project: project details
+# -u | --projecturl: project url
+# -f | --filter: filter properties
+# Environment variables:
+# ELICENSE: license type
+# ELICENSE_YEAR: license year
+# ELICENSE_FULLNAME: author name
+# ELICENSE_EMAIL: author email
+# ELICENSE_PROJECT: project details
+# ELICENSE_PROJECTURL: project url
+# ELICENSE_FILTER: filter properties
+```
+<br>
+
+
+## package
 
 ```javascript
 const elicense = require('extra-license');
-// elicense.corpus: Map {id => {id, title, nickname, description, permissions, conditions, limitations}}
-// elicense.load(): true (corpus loaded)
-// elicense.search(<text>): [{properties}]
-// elicense.get(<id>, [options]): license
-// elicense(<text>, [options])
-// -> license
-
 
 elicense.load();
 /* load corpus first */
@@ -117,8 +119,26 @@ await elicense.get('isc', {year: 2017, fullname: 'Megasthenes'});
 // ...
 ```
 
+### reference
 
-[![Merferry](https://i.imgur.com/EYm1X2y.jpg)](https://merferry.github.io)
+```javascript
+const elicense = require('extra-license');
+
+elicense.corpus
+// -> Map {id => {id, title, nickname, description, permissions, conditions, limitations}}
+elicense.load()
+// -> true (corpus loaded)
+elicense.search(text)
+// -> [{properties}]
+elicense.get(id, [options])
+// -> license
+elicense(text, [options])
+// -> license
+```
+<br>
+
+
+[![nodef](https://merferry.glitch.me/card/extra-decompress.svg)](https://nodef.github.io)
 > All license texts obtained from [choosealicense.com].
 
 [SPDX license]: https://spdx.org/licenses/
