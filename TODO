@@ -5,3 +5,4 @@ legally	license	Check the licenses for the packages that you are using
 npm-license-crawler	licences	Analyzes license information for multiple node.js modules (package.json files) as part of your software project.
 license-ls	licenses.list	Get a list of licenses for any installed project dependencies
 npm-license-corrections	license.spdxexpr	SPDX license expressions for npm packages without proper metadata
+spdx-licenses	npm.license	Has a list of all the valid SPDX licenses, and for a given id, will return the full name and if OSI approved.
