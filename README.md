@@ -141,6 +141,8 @@ elicense(text, [options])
 [![nodef](https://merferry.glitch.me/card/extra-decompress.svg)](https://nodef.github.io)
 > All license texts obtained from [choosealicense.com].
 
+![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/extra-license)
+
 [SPDX license]: https://spdx.org/licenses/
 [license types]: https://github.com/nodef/extra-license/tree/master/assets
 [choosealicense.com]: https://github.com/github/choosealicense.com
