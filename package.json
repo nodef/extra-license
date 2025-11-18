@@ -1,6 +1,6 @@
 {
   "name": "extra-license",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "Get SPDX license text.",
   "main": "index.js",
   "scripts": {
@@ -20,8 +20,7 @@
     "license",
     "spdx",
     "text",
-    "console",
-    "merferry"
+    "console"
   ],
   "author": "wolfram77@gmail.com",
   "license": "MIT",
@@ -30,9 +29,9 @@
   },
   "homepage": "https://github.com/nodef/extra-license#readme",
   "dependencies": {
-    "lunr": "^2.3.6"
+    "lunr": "^2.3.9"
   },
   "devDependencies": {
-    "js-yaml": "^3.13.1"
+    "js-yaml": "^4.1.1"
   }
 }
