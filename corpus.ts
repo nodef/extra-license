@@ -34,4 +34,4 @@ const CORPUS = new Map([
   ["wtfpl", {id:"wtfpl",title:"Do What The F*ck You Want To Public License",nickname:"",description:"The easiest license out there. It gives the user permissions to do whatever they want with your code.",permissions:"commercial-use modifications distribution private-use",conditions:"",limitations:""}],
   ["zlib", {id:"zlib",title:"zlib License",nickname:"",description:"A short permissive license, compatible with GPL. Requires altered source versions to be documented as such.",permissions:"commercial-use modifications distribution private-use",conditions:"include-copyright document-changes",limitations:"liability warranty"}],
 ]);
-module.exports = CORPUS;
+export default CORPUS;

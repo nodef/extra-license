@@ -3,50 +3,41 @@ Get [SPDX license] text.
 <br>
 
 
-## setup
+## Console
 
 ```bash
-# install as console app
-$ npm install -g extra-license
+# Get MIT license
+$ xlicense
 
-# install as node.js package
-$ npm install extra-license
+# Get Artistic-2.0 license
+$ xlicense "artistic license"
+
+# Get ISC license with fullname
+$ xlicense isc --fullname "Jehangir Ratanji Dadabhoy Tata"
+
+# Save MIT license with year, fullname
+$ xlicense -y 2017 -n "Megasthenes" > LICENSE
+
+# Save isc license with environment variables
+$ XLICENSE=isc
+$ XLICENSE_YEAR=2017
+$ XLICENSE_FULLNAME=Megasthenes
+$ xlicense > LICENSE
+
+# Search "disclose-source" licences
+$ xlicense search "disclose-source"
+
+# Search "document-changes", show "conditions", "limitations"
+$ xlicense search "document-changes" -f "conditions,limitations"
 ```
+
 <br>
 
 
-## console
+### Reference
 
 ```bash
-# get mit license
-$ elicense
-
-# get artistic-2.0 license
-$ elicense "artistic license"
-
-# get isc license with fullname
-$ elicense isc --fullname "Jehangir Ratanji Dadabhoy Tata"
-
-# save mit license with year, fullname
-$ elicense -y 2017 -n "Megasthenes" > LICENSE
-
-# save isc license with environment variables
-$ ELICENSE=isc
-$ ELICENSE_YEAR=2017
-$ ELICENSE_FULLNAME=Megasthenes
-$ elicense > LICENSE
-
-# search "disclose-source" licences
-$ elicense search "disclose-source"
-
-# search "document-changes", show "conditions", "limitations"
-$ elicense search "document-changes" -f "conditions,limitations"
-```
-
-### reference
-
-```bash
-$ elicense [command] [text] [options]
+$ xlicense [command] [text] [options]
 # Commands:
 # - get: get license text (default)
 # - search: search license properties
@@ -59,26 +50,26 @@ $ elicense [command] [text] [options]
 # -u | --projecturl: project url
 # -f | --filter: filter properties
 # Environment variables:
-# ELICENSE: license type
-# ELICENSE_YEAR: license year
-# ELICENSE_FULLNAME: author name
-# ELICENSE_EMAIL: author email
-# ELICENSE_PROJECT: project details
-# ELICENSE_PROJECTURL: project url
-# ELICENSE_FILTER: filter properties
+# XLICENSE: license type
+# XLICENSE_YEAR: license year
+# XLICENSE_FULLNAME: author name
+# XLICENSE_EMAIL: author email
+# XLICENSE_PROJECT: project details
+# XLICENSE_PROJECTURL: project url
+# XLICENSE_FILTER: filter properties
 ```
 <br>
 
 
 ## package
 
-```javascript
-const elicense = require('extra-license');
+```ts
+import * as xlicense from "jsr:@nodef/extra-license";
 
-elicense.load();
-/* load corpus first */
+xlicense.load();
+/* Load corpus first */
 
-await elicense();
+await xlicense.license();
 // MIT License
 //
 // Copyright (c) [year] [fullname]
@@ -86,7 +77,7 @@ await elicense();
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // ...
 
-await elicense('isc', {year: 2017, fullname: 'Megasthenes'});
+await xlicense.license('isc', {year: 2017, fullname: 'Megasthenes'});
 // ISC License
 //
 // Copyright (c) 2018, Megasthenes
@@ -94,7 +85,7 @@ await elicense('isc', {year: 2017, fullname: 'Megasthenes'});
 // Permission to use, copy, modify, and/or distribute this software for any
 // ...
 
-elicense.search('network-use-disclose');
+xlicense.searchLicense('network-use-disclose');
 // [ { id: 'agpl-3.0',
 //     title: 'GNU Affero General Public License v3.0',
 //     nickname: 'GNU AGPLv3',
@@ -106,7 +97,7 @@ elicense.search('network-use-disclose');
 //      'include-copyright document-changes disclose-source network-use-disclose same-license',
 //     limitations: 'liability warranty' }, ... ]
 
-await elicense.get('isc', {year: 2017, fullname: 'Megasthenes'});
+await xlicense.getLicense('isc', {year: 2017, fullname: 'Megasthenes'});
 // ISC License
 //
 // Copyright (c) 2017, Megasthenes
@@ -119,20 +110,22 @@ await elicense.get('isc', {year: 2017, fullname: 'Megasthenes'});
 // ...
 ```
 
-### reference
+<br>
+
+### Reference
 
 ```javascript
-const elicense = require('extra-license');
+import * as xlicense from "jsr:@nodef/extra-license";
 
-elicense.corpus
+// xlicense.corpus
 // -> Map {id => {id, title, nickname, description, permissions, conditions, limitations}}
-elicense.load()
+xlicense.loadLicense()
 // -> true (corpus loaded)
-elicense.search(text)
+xlicense.searchLicense(text)
 // -> [{properties}]
-elicense.get(id, [options])
+xlicense.getLicense(id, [options])
 // -> license
-elicense(text, [options])
+xlicense.license(text, [options])
 // -> license
 ```
 <br>
